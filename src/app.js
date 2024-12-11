@@ -46,10 +46,23 @@ function changeCard() {
     height > 0 ? `${height}px` : " ";
 }
 
+document.getElementById("card-width").addEventListener("input", changeCard);
+document.getElementById("card-height").addEventListener("input", changeCard);
 window.onload = function() {
   generateCard();
   setInterval(generateCard, 10000);
-
-  document.getElementById("card-width").addEventListener("input", changeCard);
-  document.getElementById("card-height").addEventListener("input", changeCard);
+  Temporizador(10); // Starts the timer at 10 seconds
 };
+
+const temporizador = document.getElementById("temporizador");
+
+function Temporizador(seconds) {
+  if (seconds > 0) {
+    temporizador.textContent = `${seconds} seconds`; // Displays the number followed by "seconds"
+    setTimeout(() => {
+      Temporizador(seconds - 1);
+    }, 1000);
+  } else {
+    Temporizador(10); // Restarts the timer from 10
+  }
+}
